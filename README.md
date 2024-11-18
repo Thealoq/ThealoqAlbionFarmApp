@@ -26,6 +26,8 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 ## 📱 Ekran Görüntüleri
 
  ![brave_S9sQrSafy5](https://github.com/user-attachments/assets/a79925f2-cd9d-44f8-a3b4-4de53152cd1b)
+![brave_iKbWHBejYP](https://github.com/user-attachments/assets/0c5da458-fd78-4bf8-9189-2c0ab5c1c98f)
+![brave_L1Lzbr4DJA](https://github.com/user-attachments/assets/86c8f927-1cca-496f-a482-a79751f89f14)
 
 
 ## 🚀 Nasıl Çalışır?
