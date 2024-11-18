@@ -1,6 +1,6 @@
 # Farm Planner
 
-![Farm Planner Ana Sayfa](./screenshots/home.png)
+![Farm Planner Ana Sayfa](https://github.com/user-attachments/assets/b5d9d406-6891-4514-ac17-8143c6b86a03)
 
 Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin.
 
@@ -25,10 +25,10 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 
 ## 📱 Ekran Görüntüleri
 
-<div align="center">
-  <img src="./screenshots/home.png" alt="Ana Sayfa" width="45%">
-  <img src="./screenshots/islands.png" alt="Ada Yönetimi" width="45%">
-</div>
+ ![brave_S9sQrSafy5](https://github.com/user-attachments/assets/a79925f2-cd9d-44f8-a3b4-4de53152cd1b)
+![brave_iKbWHBejYP](https://github.com/user-attachments/assets/0c5da458-fd78-4bf8-9189-2c0ab5c1c98f)
+![brave_L1Lzbr4DJA](https://github.com/user-attachments/assets/86c8f927-1cca-496f-a482-a79751f89f14)
+
 
 ## 🚀 Nasıl Çalışır?
 
@@ -45,7 +45,7 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 
 ```bash
 # Depoyu klonlayın
-git clone https://github.com/kullaniciadi/farm-planner.git
+git clone https://github.com/Thealoq/ThealoqAlbionFarmApp.git
 
 # Bağımlılıkları yükleyin
 npm install
