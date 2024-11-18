@@ -45,7 +45,7 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 
 ```bash
 # Depoyu klonlayın
-git clone https://github.com/Thealoq/albionfarmapp.git
+git clone https://github.com/kullaniciadi/farm-planner.git
 
 # Bağımlılıkları yükleyin
 npm install
