@@ -4,7 +4,7 @@ export const WaterEffect: React.FC = () => {
   return (
     <>
       {/* Wave patterns */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 w-[80%] h-[80%]">
         {Array.from({ length: 24 }).map((_, i) => (
           <div
             key={i}

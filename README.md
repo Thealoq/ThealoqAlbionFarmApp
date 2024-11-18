@@ -1,8 +1,57 @@
-# React + Vite
+# Farm Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin.
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🏝️ Çoklu Ada Sistemi
+- Her biri 16 tarlaya sahip adalarınızı ayrı ayrı yönetin
+- Ada bazlı istatistikler ve raporlama
+- Aktif/Pasif ada yönetimi
+
+### 🌾 Çeşitli Mahsuller  
+- 4 farklı mahsul türü ile çiftliğinizi çeşitlendirin
+- Her mahsulün kendine özgü:
+  - Büyüme süresi
+  - Fiyatlandırması 
+  - Kâr marjı
+
+### ⏲️ Verimli Planlama
+- Mahsul büyüme sürelerini takip edin
+- Hasat zamanlarını planlayın
+- Saatlik/Günlük gelir hesaplaması
+
+## Nasıl Çalışır?
+
+1. **Ada Seçimi**
+   - Yönetmek istediğiniz adayı seçin veya yeni bir ada ekleyin
+
+2. **Tarla Seçimi** 
+   - 16 tarladan birini seçerek ekim yapmaya başlayın
+
+3. **Mahsul Ekimi**
+   - 4 farklı mahsul arasından seçim yapın ve ekiminizi gerçekleştirin
+
+## Kurulum
+
+# Depoyu klonlayın
+git clone https://github.com/kullaniciadi/farm-planner.git
+
+# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme sunucusunu başlatın
+npm run dev
+```
+
+## Teknolojiler
+
+- React
+- React Router
+- TailwindCSS
+- LocalStorage
+- Lucide Icons
+
+## Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.

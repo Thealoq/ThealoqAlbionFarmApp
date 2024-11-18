@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Summary = () => {
     const islandsData = JSON.parse(localStorage.getItem('islandsData')) || [];
