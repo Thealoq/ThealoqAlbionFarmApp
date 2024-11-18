@@ -3,7 +3,6 @@ import React from 'react';
 export const WaterEffect: React.FC = () => {
   return (
     <>
-      {/* Wave patterns */}
       <div className="absolute inset-0 opacity-30 w-[80%] h-[80%]">
         {Array.from({ length: 24 }).map((_, i) => (
           <div
@@ -20,7 +19,6 @@ export const WaterEffect: React.FC = () => {
         ))}
       </div>
       
-      {/* Shimmer effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white to-transparent opacity-5" />
     </>
   );

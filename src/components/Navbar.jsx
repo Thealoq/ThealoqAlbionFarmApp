@@ -4,6 +4,7 @@ import { ChevronLeft, Home as HomeIcon } from 'lucide-react';
 export function Navbar() {
   const location = useLocation();
   const isIslandPage = location.pathname.includes('/island/');
+  const isHomePage = location.pathname === '/';
   const islandNumber = isIslandPage ? location.pathname.split('/')[2] : null;
 
   const handleLogout = () => {
@@ -14,15 +15,16 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-sm px-4 py-3 z-50">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Sol Kısım */}
         <div className="flex items-center gap-6">
-          <Link 
-            to="/islands" 
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-          >
-            <ChevronLeft size={20} />
-            <span>Geri Dön</span>
-          </Link>
+          {!isHomePage && (
+            <Link 
+              to="/islands" 
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            >
+              <ChevronLeft size={20} />
+              <span>Geri Dön</span>
+            </Link>
+          )}
           
           {isIslandPage && (
             <div className="flex items-center gap-2 text-gray-400">
@@ -39,7 +41,6 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Orta Logo */}
         <Link 
           to="/" 
           className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 
@@ -48,7 +49,6 @@ export function Navbar() {
           <span>Farm Planner</span>
         </Link>
 
-        {/* Sağ Kısım */}
         <div className="flex items-center gap-6">
           <Link 
             to="/"

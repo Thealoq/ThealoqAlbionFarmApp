@@ -1,8 +1,10 @@
 # Farm Planner
 
+![Farm Planner Ana Sayfa](./screenshots/home.png)
+
 Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin.
 
-## Özellikler
+## 🌟 Özellikler
 
 ### 🏝️ Çoklu Ada Sistemi
 - Her biri 16 tarlaya sahip adalarınızı ayrı ayrı yönetin
@@ -21,7 +23,14 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 - Hasat zamanlarını planlayın
 - Saatlik/Günlük gelir hesaplaması
 
-## Nasıl Çalışır?
+## 📱 Ekran Görüntüleri
+
+<div align="center">
+  <img src="./screenshots/home.png" alt="Ana Sayfa" width="45%">
+  <img src="./screenshots/islands.png" alt="Ada Yönetimi" width="45%">
+</div>
+
+## 🚀 Nasıl Çalışır?
 
 1. **Ada Seçimi**
    - Yönetmek istediğiniz adayı seçin veya yeni bir ada ekleyin
@@ -32,8 +41,9 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 3. **Mahsul Ekimi**
    - 4 farklı mahsul arasından seçim yapın ve ekiminizi gerçekleştirin
 
-## Kurulum
+## ⚙️ Kurulum
 
+```bash
 # Depoyu klonlayın
 git clone https://github.com/kullaniciadi/farm-planner.git
 
@@ -44,7 +54,7 @@ npm install
 npm run dev
 ```
 
-## Teknolojiler
+## 🛠️ Teknolojiler
 
 - React
 - React Router
@@ -52,6 +62,6 @@ npm run dev
 - LocalStorage
 - Lucide Icons
 
-## Lisans
+## 📄 Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+Bu proje MIT lisansı altında lisanslanmıştır.

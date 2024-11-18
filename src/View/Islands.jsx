@@ -8,7 +8,7 @@ export function Islands() {
     const savedIslands = localStorage.getItem('islands');
     return savedIslands ? JSON.parse(savedIslands).map(island => ({
       ...island,
-      isActive: island.isActive ?? true // Varsayılan olarak aktif
+      isActive: island.isActive ?? true 
     })) : [];
   });
 
@@ -120,7 +120,6 @@ export function Islands() {
           </div>
         </div>
 
-        {/* Ada Listesi */}
         <div className="grid gap-2 mb-16">
           {islands.map((island) => {
             const stats = calculateStats(island);
@@ -133,7 +132,6 @@ export function Islands() {
                     ? 'border-green-500/20' 
                     : 'border-red-500/20'}`}
               >
-                {/* Üst Kısım - İsim ve Butonlar */}
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2 mb-0.5">
@@ -183,7 +181,6 @@ export function Islands() {
                   </div>
                 </div>
 
-                {/* Alt Kısım - İstatistikler */}
                 <div className="grid grid-cols-3 gap-2 mt-2">
                   <div className="bg-slate-800/50 rounded-lg p-2 flex flex-col">
                     <span className="text-[10px] text-gray-400 flex items-center gap-1 mb-0.5">
@@ -215,7 +212,6 @@ export function Islands() {
                     </span>
                   </div>
 
-                  {/* Kâr/Zarar */}
                   <div className="col-span-3 bg-slate-800/50 rounded-lg p-2 flex items-center justify-between">
                     <span className="text-[10px] text-gray-400">Toplam Kâr/Zarar</span>
                     <span className={`text-xs font-medium 
@@ -230,7 +226,6 @@ export function Islands() {
           })}
         </div>
 
-        {/* Ada Oluştur Butonu */}
         <Link
           to="/create-farm"
           className="fixed bottom-0 left-0 w-full bg-yellow-500 hover:bg-yellow-400 

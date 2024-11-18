@@ -1,75 +1,56 @@
-/* Genel stil ayarları */
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-/* Uygulama konteyneri */
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Tam ekran yüksekliği */
-}
-
-/* Başlık stili */
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #2c3e50; /* Koyu mavi tonları */
-}
-
-/* Paragraf stili */
-p {
-  font-size: 1.2rem;
-  margin: 10px 0;
-}
-
-/* Yükleniyor mesajı stili */
-.loading {
-  font-size: 1.5rem;
-  color: #e67e22; /* Turuncu renk */
-}
-
-/* Kart görünümü */
-.card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-}
-
-/* Buton stili (isteğe bağlı) */
-button {
-  background-color: #3498db; /* Mavi tonları */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: #2980b9; /* Daha koyu mavi tonları */
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@keyframes water {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(-50%, -50%);
-  }
+/* Temel Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.animate-water {
-  animation: water 10s linear infinite;
+/* Scrollbar Özelleştirmesi */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b; /* slate-800 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eab308; /* yellow-500 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #facc15; /* yellow-400 */
+}
+
+/* Sayfa Geçişleri için Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Input Autofill Renk Düzeltmesi */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #1e293b inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Seçim Rengi */
+::selection {
+  background: #eab308; /* yellow-500 */
+  color: #0f172a; /* slate-900 */
+}
+
+/* Mobil için Dokunmatik Vurgu Rengi Kaldırma */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

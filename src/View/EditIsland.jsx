@@ -41,11 +41,9 @@ export function EditIsland() {
     <div className="w-full min-h-screen bg-slate-800 pt-16 px-3 relative overflow-hidden">
       <WaterEffect />
       <div className="container mx-auto max-w-md relative z-10">
-        {/* Ana Kart */}
         <div className="bg-slate-900/80 backdrop-blur-sm rounded-lg p-4">
           <h1 className="text-lg font-bold text-white mb-4">Ada Düzenle</h1>
 
-          {/* Ada Bilgileri */}
           <div className="space-y-4">
             <div>
               <label className="block text-white/60 text-sm mb-1">Ada İsmi</label>
@@ -59,7 +57,6 @@ export function EditIsland() {
               />
             </div>
 
-            {/* İstatistikler */}
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-slate-800/50 rounded-lg p-3">
                 <span className="text-white/60 text-xs">Toplam Tarla</span>
@@ -71,7 +68,6 @@ export function EditIsland() {
               </div>
             </div>
 
-            {/* Butonlar */}
             <div className="flex items-center justify-between pt-3">
               <button
                 onClick={() => setShowDeleteConfirm(true)}
@@ -94,7 +90,6 @@ export function EditIsland() {
           </div>
         </div>
 
-        {/* Silme Onayı Modal */}
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
             <div className="bg-slate-900 rounded-lg p-4 max-w-xs w-full">

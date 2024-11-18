@@ -6,10 +6,12 @@ import { NotFound } from './View/NotFound';
 import { Home } from './View/Home';
 import { Login } from './View/Login';
 import { EditIsland } from './View/EditIsland';
+import { Navbar } from './components/Navbar';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

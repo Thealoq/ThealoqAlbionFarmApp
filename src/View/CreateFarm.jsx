@@ -68,7 +68,6 @@ export function CreateFarm() {
             </button>
           </div>
 
-          {/* İsim Girişi */}
           <div className="mb-4">
             <label className="block text-gray-400 text-sm mb-1">Ada İsmi</label>
             <input
@@ -81,7 +80,6 @@ export function CreateFarm() {
             />
           </div>
 
-          {/* Şablonlar */}
           <div className="mb-4">
             <label className="block text-gray-400 text-sm mb-1">Ada Şablonu</label>
             <div className="grid grid-cols-1 gap-2">
@@ -104,7 +102,6 @@ export function CreateFarm() {
             </div>
           </div>
 
-          {/* Oluştur Butonu */}
           <button
             onClick={handleCreate}
             disabled={!farmName || !selectedTemplate}
