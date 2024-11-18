@@ -26,9 +26,9 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 ## 📱 Ekran Görüntüleri
 
 <div align="center">
-  ![island](https://github.com/user-attachments/assets/077fc393-c390-4c0e-9495-08e273c0342e)
-  ![islands](https://github.com/user-attachments/assets/e5e68628-eeaa-45a6-983a-b67440a81e67)
-  ![Addİtem](https://github.com/user-attachments/assets/0133043d-1160-45c4-9989-506038a48ada)
+ ![brave_S9sQrSafy5](https://github.com/user-attachments/assets/a79925f2-cd9d-44f8-a3b4-4de53152cd1b)
+![brave_iKbWHBejYP](https://github.com/user-attachments/assets/1520858a-e351-4596-8c2e-e84b93339e8c)
+
 </div>
 
 ## 🚀 Nasıl Çalışır?
