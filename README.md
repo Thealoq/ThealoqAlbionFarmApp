@@ -1,6 +1,6 @@
 # Farm Planner
 
-![Farm Planner Ana Sayfa](./screenshots/home.png)
+![Farm Planner Ana Sayfa](https://github.com/user-attachments/assets/b5d9d406-6891-4514-ac17-8143c6b86a03)
 
 Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin.
 
@@ -26,8 +26,9 @@ Adalarınızı yönetin, mahsullerinizi planlayın ve çiftliğinizi geliştirin
 ## 📱 Ekran Görüntüleri
 
 <div align="center">
-  <img src="./screenshots/home.png" alt="Ana Sayfa" width="45%">
-  <img src="./screenshots/islands.png" alt="Ada Yönetimi" width="45%">
+  ![island](https://github.com/user-attachments/assets/077fc393-c390-4c0e-9495-08e273c0342e)
+  ![islands](https://github.com/user-attachments/assets/e5e68628-eeaa-45a6-983a-b67440a81e67)
+  ![Addİtem](https://github.com/user-attachments/assets/0133043d-1160-45c4-9989-506038a48ada)
 </div>
 
 ## 🚀 Nasıl Çalışır?
