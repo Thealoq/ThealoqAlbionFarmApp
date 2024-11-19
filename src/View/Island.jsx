@@ -218,6 +218,8 @@ export function Island() {
   const [selectedPlot, setSelectedPlot] = useState(null);
   const [selectedFarmId, setSelectedFarmId] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('crops');
+  const [selectedCrop, setSelectedCrop] = useState(null);
+  const [showAllFarmsModal, setShowAllFarmsModal] = useState(false);
   
   // Adalar
   const [islands, setIslands] = useState(() => {
@@ -448,6 +450,63 @@ export function Island() {
     }
   };
 
+  // Yeni fonksiyon - seçili ürünü tüm farmlara ekler
+  const plantSelectedToAllFarms = (selectedCrop) => {
+    if (window.confirm(`Bu ürünü tüm farmlardaki tüm parsellere ekmek istediğinize emin misiniz?`)) {
+      const newFarms = farms.map(farm => ({
+        ...farm,
+        plots: farm.plots.map(plot => ({
+          ...plot,
+          crop: selectedCrop,
+          plantedAt: Date.now(),
+          status: 'growing'
+        }))
+      }));
+
+      setFarms(newFarms);
+      localStorage.setItem(`island_${id}_farms`, JSON.stringify(newFarms));
+      setShowModal(false);
+    }
+  };
+
+  // Tüm farmlara eklemek için fonksiyon
+  const plantToAllFarms = (selectedCrop) => {
+    if (window.confirm(`Bu ürünü tüm farmlardaki tüm parsellere ekmek istediğinize emin misiniz?`)) {
+      const newFarms = farms.map(farm => ({
+        ...farm,
+        plots: farm.plots.map(plot => ({
+          ...plot,
+          crop: selectedCrop,
+          plantedAt: Date.now(),
+          status: 'growing'
+        }))
+      }));
+
+      setFarms(newFarms);
+      localStorage.setItem(`island_${id}_farms`, JSON.stringify(newFarms));
+      setShowAllFarmsModal(false);
+    }
+  };
+
+  // Seçilen ürünü tüm farmlara ekleyen fonksiyon
+  const plantToAllFarmsInIsland = (selectedItem) => {
+    if (window.confirm(`Bu ürünü adadaki tüm farmlara ekmek istediğinize emin misiniz?`)) {
+      const newFarms = farms.map(farm => ({
+        ...farm,
+        plots: farm.plots.map(plot => ({
+          ...plot,
+          crop: selectedItem,
+          plantedAt: Date.now(),
+          status: 'growing'
+        }))
+      }));
+
+      setFarms(newFarms);
+      localStorage.setItem(`island_${id}_farms`, JSON.stringify(newFarms));
+      setShowBulkPlantModal(false);
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-background pt-16 px-4">
       <WaterEffect className="!fixed" />
@@ -466,26 +525,27 @@ export function Island() {
 
           <div className="flex items-center gap-3">
             {/* Farm Ekleme */}
-            <button
-              onClick={addFarm}
-              disabled={farms.length >= maxFarms}
-              className={`p-2 rounded-lg transition-colors
-                ${farms.length >= maxFarms 
-                  ? 'bg-gray-500/10 text-gray-500 cursor-not-allowed' 
-                  : 'bg-primary-500/10 text-primary-500 hover:bg-primary-500/20'}`}
-              title={farms.length >= maxFarms ? 'Maximum farm sayısına ulaşıldı' : 'Farm Ekle'}
-            >
-              <Plus size={20} />
-            </button>
+            
+
+          
 
             {/* Tüm Farmları Sıfırla */}
             <button
-              onClick={deleteAllFarms}
-              className="p-2 bg-red-500/10 text-red-500 rounded-lg
+              onClick={() => setShowBulkPlantModal(true)}
+              className="p-2 bg-red-500/10 text-primary-500 rounded-lg
                 hover:bg-red-500/20 transition-colors"
               title="Tüm Farmları Sıfırla"
             >
-              <Trash2 size={20} />
+              <Grid size={20} />
+            </button>
+
+            <button
+              onClick={() => plantSelectedToAllFarms(selectedCrop)}
+              className="p-2 bg-red-500/10 text-yellow-500 rounded-lg
+                hover:bg-red-500/20 transition-colors"
+              title="Tüm Farmlara Ekle"
+            >
+              <Eraser size={20} />
             </button>
           </div>
         </div>
@@ -524,14 +584,7 @@ export function Island() {
                   </button>
 
                   {/* Farm'ı Sil */}
-                  <button
-                    onClick={() => deleteFarm(farm.id)}
-                    className="p-1.5 bg-red-500/10 text-red-500 rounded-lg
-                      hover:bg-red-500/20 transition-colors"
-                    title="Farm'ı Sil"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                  
                 </div>
               </div>
 
@@ -753,99 +806,141 @@ export function Island() {
 
         {/* Toplu Ekim Modalı */}
         {showBulkPlantModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-            <div className="bg-background-light rounded-xl p-6 w-full max-w-2xl">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-medium text-white">
-                  {selectedFarmId ? `Farm #${selectedFarmId} - Toplu Ekim` : 'Tüm Farmlara Toplu Ekim'}
-                </h2>
-                <button 
-                  onClick={() => {
-                    setShowBulkPlantModal(false);
-                    setSelectedFarmId(null);
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-
-              {/* Kategori Seçimi */}
-              <div className="flex items-center gap-2 mb-4">
-                <button
-                  onClick={() => setSelectedCategory('crops')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
-                    ${selectedCategory === 'crops' 
-                      ? 'bg-primary-500/20 text-primary-400' 
-                      : 'text-gray-400 hover:bg-gray-800/50'}`}
-                >
-                  Ekinler
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('animals')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
-                    ${selectedCategory === 'animals' 
-                      ? 'bg-primary-500/20 text-primary-400' 
-                      : 'text-gray-400 hover:bg-gray-800/50'}`}
-                >
-                  Hayvanlar
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('horses')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
-                    ${selectedCategory === 'horses' 
-                      ? 'bg-primary-500/20 text-primary-400' 
-                      : 'text-gray-400 hover:bg-gray-800/50'}`}
-                >
-                  Atlar
-                </button>
-              </div>
-
-              {/* Ekin Grid'i */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {getFilteredItems().map(item => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (showBulkPlantModal) {
-                        bulkPlantCrop(item);
-                      } else {
-                        plantCrop(selectedFarmId, selectedPlot?.id, item);
-                      }
-                    }}
-                    className={`group relative aspect-square rounded-xl p-4 cursor-pointer
-                      transition-all duration-300
-                      bg-gradient-to-br ${item.color}
-                      hover:scale-[1.02] hover:shadow-xl
-                      border border-gray-800/50`}
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-[#111] rounded-2xl w-full max-w-4xl border border-white/5">
+              {/* Modal Header */}
+              <div className="p-6 border-b border-white/5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">
+                      Tüm Farmlara Ekle
+                    </h2>
+                    <p className="text-sm text-zinc-400 mt-1">
+                      Seçtiğiniz ürün adadaki tüm farmlara ekilecek
+                    </p>
+                  </div>
+                  <button 
+                    onClick={() => setShowBulkPlantModal(false)}
+                    className="p-2 text-zinc-400 hover:text-white rounded-lg
+                      hover:bg-white/5 transition-colors"
                   >
-                    <div className="h-full flex flex-col items-center justify-between">
-                      <div className="flex-1 flex items-center justify-center">
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                {/* Category Tabs */}
+                <div className="flex items-center gap-2 p-1 bg-[#0A0A0A] rounded-lg mb-6">
+                  <button
+                    onClick={() => setSelectedCategory('crops')}
+                    className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-medium 
+                      transition-all duration-200 flex items-center justify-center gap-2
+                      ${selectedCategory === 'crops' 
+                        ? 'text-white bg-[#7c3aed]' 
+                        : 'text-zinc-400 hover:text-zinc-300 hover:bg-white/5'}`}
+                  >
+                    <Sprout size={16} />
+                    <span>Ekinler</span>
+                  </button>
+                  <button
+                    onClick={() => setSelectedCategory('animals')}
+                    className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-medium 
+                      transition-all duration-200 flex items-center justify-center gap-2
+                      ${selectedCategory === 'animals' 
+                        ? 'text-white bg-[#7c3aed]' 
+                        : 'text-zinc-400 hover:text-zinc-300 hover:bg-white/5'}`}
+                  >
+                    <PawPrint size={16} />
+                    <span>Hayvanlar</span>
+                  </button>
+                </div>
+
+                {/* Items Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {getFilteredItems().map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => plantToAllFarmsInIsland(item)}
+                      className="bg-[#0A0A0A] p-4 rounded-xl border border-white/5
+                        hover:border-[#7c3aed]/20 hover:scale-[1.02] transition-all duration-200"
+                    >
+                      <div className="flex flex-col items-center gap-3">
                         <img 
                           src={item.image} 
                           alt={item.name}
-                          className="w-16 h-16 object-contain drop-shadow-2xl
-                            transition-transform duration-300 group-hover:scale-110" 
+                          className="w-16 h-16 object-contain" 
                         />
-                      </div>
-                      
-                      <div className="w-full space-y-2">
-                        <div className="text-sm font-medium text-gray-200 text-center">
+                        <div className="text-sm font-medium text-white">
                           {item.name}
-                          {item.tier && <span className="ml-1 text-xs">({item.tier})</span>}
                         </div>
-                        <div className="flex items-center justify-between px-2 py-1.5 
-                          bg-black/20 rounded-xl backdrop-blur-sm">
-                          <div className="flex items-center gap-1.5">
-                            <Timer size={14} className="text-gray-400" />
-                            <span className="text-xs text-gray-400">{item.growthTime}</span>
-                          </div>
-                          <span className="text-xs text-gray-400">{item.price} 💰</span>
+                        <div className="flex items-center gap-2 text-xs text-zinc-400">
+                          <Timer size={14} />
+                          <span>{item.growthTime}</span>
                         </div>
                       </div>
-                    </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tüm Farmlara Ekleme Modalı */}
+        {showAllFarmsModal && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-[#111] rounded-2xl w-full max-w-4xl border border-white/5 shadow-2xl">
+              {/* Modal Header */}
+              <div className="p-6 border-b border-white/5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">
+                      Tüm Farmlara Ekle
+                    </h2>
+                    <p className="text-sm text-zinc-400 mt-1">
+                      Seçtiğiniz ürün tüm farmlardaki tüm parsellere ekilecek
+                    </p>
+                  </div>
+                  <button 
+                    onClick={() => setShowAllFarmsModal(false)}
+                    className="p-2 text-zinc-400 hover:text-white rounded-lg
+                      hover:bg-white/5 transition-colors"
+                  >
+                    <X size={20} />
                   </button>
-                ))}
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                {/* Items Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {CROPS.map(crop => (
+                    <button
+                      key={crop.id}
+                      onClick={() => plantToAllFarms(crop)}
+                      className="bg-[#0A0A0A] p-4 rounded-xl border border-white/5
+                        hover:border-[#7c3aed]/20 hover:scale-[1.02] transition-all duration-200"
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        <img 
+                          src={crop.image} 
+                          alt={crop.name}
+                          className="w-16 h-16 object-contain" 
+                        />
+                        <div className="text-sm font-medium text-white">
+                          {crop.name}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-zinc-400">
+                          <Timer size={14} />
+                          <span>{crop.growthTime}</span>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
