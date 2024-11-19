@@ -3,7 +3,7 @@ import React from 'react';
 export const WaterEffect: React.FC = () => {
   return (
     <>
-      <div className="absolute inset-0 opacity-30 w-[80%] h-[80%]">
+      <div className="fixed inset-0 opacity-30">
         {Array.from({ length: 24 }).map((_, i) => (
           <div
             key={i}
@@ -19,7 +19,7 @@ export const WaterEffect: React.FC = () => {
         ))}
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white to-transparent opacity-5" />
+      <div className="fixed inset-0 bg-gradient-to-br from-transparent via-white to-transparent opacity-5" />
     </>
   );
 };

@@ -19,10 +19,10 @@ export function Storage() {
 
   // Malzeme listesi
   const ingredients = [
-    { id: 'wheat', name: 'Buğday', color: 'from-yellow-500 to-yellow-600' },
-    { id: 'corn', name: 'Mısır', color: 'from-yellow-400 to-yellow-500' },
-    { id: 'carrot', name: 'Havuç', color: 'from-orange-400 to-orange-500' },
-    { id: 'potato', name: 'Patates', color: 'from-yellow-700 to-yellow-800' }
+     { id: 'wheat', name: 'Buğday', icon: '🌾' },
+    { id: 'corn', name: 'Mısır', icon: '🌽' },
+    { id: 'carrot', name: 'Havuç', icon: '🥕' },
+    { id: 'potato', name: 'Patates', icon: '🥔' },
   ];
 
   // Craft tarifleri
@@ -32,28 +32,28 @@ export function Storage() {
       name: 'Un',
       ingredients: { wheat: 2 },
       output: 1,
-      color: 'from-gray-200 to-gray-300'
+      icon: '🌾'
     },
     {
       id: 'bread',
       name: 'Ekmek',
-      ingredients: { flour: 1 },
+      ingredients: { wheat: 1 },
       output: 1,
-      color: 'from-yellow-600 to-yellow-700'
+      icon: '🍞'
     },
     {
       id: 'feed',
       name: 'Yem',
       ingredients: { wheat: 1, corn: 1 },
       output: 2,
-      color: 'from-orange-300 to-orange-400'
+      icon: '🌽'
     },
     {
       id: 'soup',
       name: 'Çorba',
       ingredients: { carrot: 2, potato: 1 },
       output: 1,
-      color: 'from-red-400 to-red-500'
+      icon: '🥕'
     }
   ];
 
@@ -62,7 +62,6 @@ export function Storage() {
   }, [storage]);
 
   const craftItem = (recipe) => {
-    // Malzemeleri kontrol et
     for (const [ingredient, amount] of Object.entries(recipe.ingredients)) {
       if (storage[ingredient] < amount) {
         alert(`Yetersiz malzeme: ${ingredient}`);
@@ -70,7 +69,7 @@ export function Storage() {
       }
     }
 
-    // Malzemeleri kullan
+
     const newStorage = { ...storage };
     for (const [ingredient, amount] of Object.entries(recipe.ingredients)) {
       newStorage[ingredient] -= amount;
@@ -80,53 +79,72 @@ export function Storage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-900 pt-16 px-3 relative overflow-hidden">
-      <WaterEffect />
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <h1 className="text-2xl font-bold text-white mb-6">Depo & Üretim</h1>
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 px-4">
+      <WaterEffect className="opacity-5" />
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="mb-8">
+          <h1 className="text-3xl font-medium text-zinc-100">Depo & Üretim</h1>
+          <p className="text-zinc-500 mt-1">Hammadde ve üretim yönetimi</p>
+        </div>
 
-        {/* Hammaddeler */}
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 mb-6">
-          <h2 className="text-lg font-medium text-white mb-4">Hammaddeler</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {ingredients.map(item => (
-              <div 
-                key={item.id}
-                className={`bg-gradient-to-br ${item.color} rounded-lg p-3
-                  flex flex-col items-center gap-2`}
-              >
-                <span className="text-slate-900 font-medium">{item.name}</span>
-                <span className="text-2xl font-bold text-slate-900">
-                  {storage[item.id]}
-                </span>
-              </div>
-            ))}
+        <div className="bg-[#141414] rounded-xl border border-[#1f1f1f] mb-6">
+          <div className="p-5 border-b border-[#1f1f1f]">
+            <h2 className="text-lg font-medium text-zinc-100">Hammaddeler</h2>
+          </div>
+          <div className="p-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {ingredients.map(item => (
+                <div 
+                  key={item.id}
+                  className="bg-[#1a1a1a] rounded-xl p-4 border border-[#262626]
+                    hover:border-[#333333] hover:bg-[#1f1f1f] transition-all duration-200"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-2xl">{item.icon}</span>
+                    <span className="text-zinc-200 font-medium">{item.name}</span>
+                  </div>
+                  <div className="text-2xl font-medium text-zinc-100">
+                    {storage[item.id]}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Üretim Tarifleri */}
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4">
-          <h2 className="text-lg font-medium text-white mb-4">Üretim</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {recipes.map(recipe => (
-              <div 
-                key={recipe.id}
-                className="bg-slate-900/50 rounded-lg p-3"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${recipe.color}`} />
-                  <div className="flex-1 px-3">
-                    <h3 className="text-white font-medium">{recipe.name}</h3>
-                    <p className="text-sm text-gray-400">{recipe.ingredients.wheat} Buğday, {recipe.ingredients.corn} Mısır</p>
-                    <div className="mt-2">
-                      <button onClick={() => craftItem(recipe)} className="text-sm text-white bg-blue-500 rounded-lg p-2">
-                        <Package className="mr-2" /> Üret
-                      </button>
+        <div className="bg-[#141414] rounded-xl border border-[#1f1f1f]">
+          <div className="p-5 border-b border-[#1f1f1f]">
+            <h2 className="text-lg font-medium text-zinc-100">Üretim</h2>
+          </div>
+          <div className="p-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {recipes.map(recipe => (
+                <div 
+                  key={recipe.id}
+                  className="bg-[#1a1a1a] rounded-xl p-4 border border-[#262626]
+                    hover:border-[#333333] hover:bg-[#1f1f1f] transition-all duration-200"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-3xl">{recipe.icon}</span>
+                    <div className="flex-1">
+                      <h3 className="text-zinc-200 font-medium mb-1">{recipe.name}</h3>
+                      <p className="text-sm text-zinc-500">
+                        {Object.entries(recipe.ingredients)
+                          .map(([key, value]) => `${value} ${ingredients.find(i => i.id === key)?.name}`)
+                          .join(', ')}
+                      </p>
                     </div>
+                    <button 
+                      onClick={() => craftItem(recipe)}
+                      className="px-4 py-2 bg-[#7c3aed] hover:bg-[#6d28d9] 
+                        text-white rounded-lg transition-colors"
+                    >
+                      Üret
+                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
