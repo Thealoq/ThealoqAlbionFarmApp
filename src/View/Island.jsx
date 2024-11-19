@@ -488,7 +488,7 @@ export function Island() {
     }
   };
 
-  // Seçilen ürünü tüm farmlara ekleyen fonksiyon
+  // Seçilen ür��nü tüm farmlara ekleyen fonksiyon
   const plantToAllFarmsInIsland = (selectedItem) => {
     if (window.confirm(`Bu ürünü adadaki tüm farmlara ekmek istediğinize emin misiniz?`)) {
       const newFarms = farms.map(farm => ({
@@ -678,10 +678,6 @@ export function Island() {
                   >
                     <Sprout size={16} />
                     <span>Ekinler</span>
-                    <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-md
-                      bg-white/10 text-white/60">
-                      {CROPS.length}
-                    </span>
                   </button>
                   <button
                     onClick={() => setSelectedCategory('animals')}
@@ -693,10 +689,6 @@ export function Island() {
                   >
                     <PawPrint size={16} />
                     <span>Hayvanlar</span>
-                    <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-md
-                      bg-white/10 text-white/60">
-                      {ANIMALS.length}
-                    </span>
                   </button>
                   <button
                     onClick={() => setSelectedCategory('horses')}
@@ -708,10 +700,6 @@ export function Island() {
                   >
                     <Bike size={16} />
                     <span>Atlar</span>
-                    <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-md
-                      bg-white/10 text-white/60">
-                      {HORSES.length}
-                    </span>
                   </button>
                 </div>
 
@@ -737,7 +725,34 @@ export function Island() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 
                   max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/10 
                   scrollbar-track-transparent">
-                  {getFilteredItems().map(item => (
+                  {selectedCategory === 'horses' ? HORSES.map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => plantToAllFarmsInIsland(item)}
+                      className="bg-[#0A0A0A] p-4 rounded-xl border border-white/5
+                        hover:border-[#7c3aed]/20 hover:scale-[1.02] transition-all duration-200"
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-16 h-16 object-contain" 
+                        />
+                        <div className="text-sm font-medium text-white">
+                          {item.name}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-zinc-400">
+                          <Timer size={14} />
+                          <span>{item.growthTime}</span>
+                        </div>
+                        {item.tier && (
+                          <span className="text-xs px-2 py-0.5 rounded-md bg-white/5 text-white/60">
+                            Tier {item.tier}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  )) : getFilteredItems().map(item => (
                     <div key={item.id} className="group">
                       <button
                         onClick={() => plantCrop(selectedFarmId, selectedPlot?.id, item)}

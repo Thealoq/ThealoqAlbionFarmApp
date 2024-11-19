@@ -5,7 +5,6 @@ import { CreateFarm } from './View/CreateFarm';
 import { NotFound } from './View/NotFound';
 import { Home } from './View/Home';
 import { Login } from './View/Login';
-import { EditIsland } from './View/EditIsland';
 import { Storage } from './View/Storage';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './View/Dashboard';
@@ -32,7 +31,6 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/islands" element={<Islands />} />
             <Route path="/island/:id" element={<Island />} />
-            <Route path="/island/:id/edit" element={<EditIsland />} />
             <Route path="/create-farm" element={<CreateFarm />} />
             <Route path="/storage" element={<Storage />} />
             <Route path="/dashboard" element={<Dashboard />} />
